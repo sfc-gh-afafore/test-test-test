@@ -1,3 +1,5 @@
+import os.path
+
 import streamlit as st
 import snowflake.connector
 from cryptography.hazmat.backends import default_backend
@@ -5,7 +7,9 @@ from cryptography.hazmat.primitives import serialization
 
 
 def run():
-    with open("./dataset-credentials.p8", "rb") as key:
+    private_key_path = os.path.join(os.getcwd(), './dataset-credentials.p8')
+    st.write(private_key_path)
+    with open(private_key_path, "rb") as key:
         p_key = serialization.load_pem_private_key(
             key.read(),
             password=None,
