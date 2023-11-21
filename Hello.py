@@ -7,7 +7,7 @@ from cryptography.hazmat.primitives import serialization
 
 
 def run():
-    private_key_path = os.path.join(os.getcwd(), './dataset-credentials.p8')
+    private_key_path = os.path.join(os.getcwd(), '.streamlit/dataset-credentials.p8')
     st.write(private_key_path)
     with open(private_key_path, "rb") as key:
         p_key = serialization.load_pem_private_key(
