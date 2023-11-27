@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives import serialization
 def run():
     secret_file_path = st.secrets["private_key_path"]
     st.write(secret_file_path)
-    with open(st.secrets["private_key_path"], "rb") as key:
+    with open("dataset-credential.p8", "rb") as key:
         p_key = serialization.load_pem_private_key(
             key.read(),
             password=None,
