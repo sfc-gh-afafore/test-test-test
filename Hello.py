@@ -24,7 +24,7 @@ def run():
     conn = snowflake.connector.connect(
         user=st.secrets["connections"]["snowflake"]["user"],
         account=st.secrets["connections"]["snowflake"]["account"],
-        database=st.secrets["connections"]["snowflake"]["database"],
+        database="FREE_DATASET_GZT0ZLVIV74",
         private_key=pkb,
     )
     print("connected to snowflake!")
