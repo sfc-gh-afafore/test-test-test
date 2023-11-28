@@ -8,7 +8,6 @@ from cryptography.hazmat.primitives import serialization
 
 def run():
     secret_file_path = st.secrets["connections"]["snowflake"]["private_key_file_path"]
-    st.write(secret_file_path)
     with open(secret_file_path, "rb") as key:
         p_key = serialization.load_pem_private_key(
             key.read(),
@@ -32,7 +31,7 @@ def run():
     print("connected to snowflake!")
     cur = conn.cursor()
     # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
-    query = cur.execute('select * from FREE_DATASET_GZT0ZLVIV74.PUBLIC.HH_PET_202209 limit 10;');
+    query = cur.execute('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
     st.dataframe(query)
 
 
