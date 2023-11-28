@@ -7,9 +7,9 @@ from cryptography.hazmat.primitives import serialization
 
 
 def run():
-    secret_file_path = st.secrets["private_key_path"]
+    secret_file_path = st.secrets["connections"]["snowflake"]["private_key_file_path"]
     st.write(secret_file_path)
-    with open("dataset-credential.p8", "rb") as key:
+    with open(secret_file_path", "rb") as key:
         p_key = serialization.load_pem_private_key(
             key.read(),
             password=None,
