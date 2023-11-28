@@ -29,7 +29,7 @@ def run():
     print("connected to snowflake!")
     cur = conn.cursor()
     # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
-    query = cur.execute('select * from free_dataset_GZ1M6Z2R41Y.public.t_rbaseit limit 10;');
+    query = cur.execute('select * from free_dataset_GZSNZ2UNRS.public.t_rbaseit limit 10;');
     st.dataframe(query)
 
 
