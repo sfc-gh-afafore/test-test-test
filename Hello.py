@@ -24,13 +24,13 @@ def run():
     conn = snowflake.connector.connect(
         user=st.secrets["connections"]["snowflake"]["user"],
         account=st.secrets["connections"]["snowflake"]["account"],
+        database=st.secrets["database"],
         private_key=pkb,
     )
     print("connected to snowflake!")
     cur = conn.cursor()
     # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
-    cur.execute('use FREE_DATASET_GZT0ZLVIV74;');
-    query = cur.execute('select * from FREE_DATASET_GZT0ZLVIV74 limit 10;');
+    query = cur.execute('select * from FREE_DATASET_GZT0ZLVIV74.PUBLIC.HH_PET_202209 limit 10;');
     st.dataframe(query)
 
 
