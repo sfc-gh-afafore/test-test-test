@@ -21,22 +21,13 @@ def run():
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.NoEncryption())
 
-    # conn = snowflake.connector.connect(
-    #     user=st.secrets["connections"]["snowflake"]["user"],
-    #     account=st.secrets["connections"]["snowflake"]["account"],
-    #     database="FREE_DATASET_GZT0ZLVIV74",
-    #     warehouse=st.secrets["connections"]["snowflake"]["warehouse"],
-    #     role=st.secrets["connections"]["snowflake"]["role"],
-    #     private_key=pkb,
-    # )
-    conn = st.experimental_connection("snowflake", private_key=pkb)
+    conn = st.connection("snowflake", private_key=pkb)
     print("connected to snowflake!")
-    query = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;');
-    st.dataframe(query)
-    # cur = conn.cursor()
-    # # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
-    # query = cur.execute('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
-    # st.dataframe(query)
+    data = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
+    selection = data[['STREET_ADDRESS', 'CITY', 'REGION', 'POSTAL_CODE', 'PHONE_NUMBER']]
+
+    st.header('STARBUCKS LOCATIONS IN THE UNITED STATES')
+    st.dataframe(selection)
 
 
 if __name__ == "__main__":
