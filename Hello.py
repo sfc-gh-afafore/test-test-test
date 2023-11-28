@@ -21,19 +21,22 @@ def run():
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.NoEncryption())
 
-    conn = snowflake.connector.connect(
-        user=st.secrets["connections"]["snowflake"]["user"],
-        account=st.secrets["connections"]["snowflake"]["account"],
-        database="FREE_DATASET_GZT0ZLVIV74",
-        warehouse=st.secrets["connections"]["snowflake"]["warehouse"],
-        role=st.secrets["connections"]["snowflake"]["role"],
-        private_key=pkb,
-    )
+    # conn = snowflake.connector.connect(
+    #     user=st.secrets["connections"]["snowflake"]["user"],
+    #     account=st.secrets["connections"]["snowflake"]["account"],
+    #     database="FREE_DATASET_GZT0ZLVIV74",
+    #     warehouse=st.secrets["connections"]["snowflake"]["warehouse"],
+    #     role=st.secrets["connections"]["snowflake"]["role"],
+    #     private_key=pkb,
+    # )
+    conn = st.experimental_connection("snowpark", private_key=pkb, role=st.secrets["connections"]["snowflake"]["role"])
     print("connected to snowflake!")
-    cur = conn.cursor()
-    # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
-    query = cur.execute('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
+    query = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;');
     st.dataframe(query)
+    # cur = conn.cursor()
+    # # conn = st.experimental_connection("snowpark", private_key=pkb, role="readonly_role")
+    # query = cur.execute('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
+    # st.dataframe(query)
 
 
 if __name__ == "__main__":
