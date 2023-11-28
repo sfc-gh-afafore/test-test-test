@@ -22,8 +22,8 @@ def run():
         encryption_algorithm=serialization.NoEncryption())
 
     conn = snowflake.connector.connect(
-        user=st.secrets["user"],
-        account=st.secrets["account"],
+        user=st.secrets["connections"]["snowflake"]["user"],
+        account=st.secrets["connections"]["snowflake"]["account"],
         private_key=pkb,
     )
     print("connected to snowflake!")
