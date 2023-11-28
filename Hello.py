@@ -29,7 +29,7 @@ def run():
     #     role=st.secrets["connections"]["snowflake"]["role"],
     #     private_key=pkb,
     # )
-    conn = st.experimental_connection("snowflake", private_key=pkb, role=st.secrets["connections"]["snowflake"]["role"])
+    conn = st.experimental_connection("snowflake", private_key=pkb)
     print("connected to snowflake!")
     query = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;');
     st.dataframe(query)
