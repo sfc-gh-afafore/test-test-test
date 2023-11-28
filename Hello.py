@@ -25,6 +25,8 @@ def run():
         user=st.secrets["connections"]["snowflake"]["user"],
         account=st.secrets["connections"]["snowflake"]["account"],
         database="FREE_DATASET_GZT0ZLVIV74",
+        warehouse=st.secrets["connections"]["snowflake"]["warehouse"],
+        role=st.secrets["connections"]["snowflake"]["role"],
         private_key=pkb,
     )
     print("connected to snowflake!")
