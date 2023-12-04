@@ -22,7 +22,7 @@ def run():
         encryption_algorithm=serialization.NoEncryption())
 
     conn = st.connection("snowflake", private_key=pkb)
-    st.write("Successfully connected to snowflake!")
+    st.write("Successfully connected to Snowflake!")
     data = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
     selection = data[['STREET_ADDRESS', 'CITY', 'REGION', 'POSTAL_CODE', 'PHONE_NUMBER']]
 
