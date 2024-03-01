@@ -6,3 +6,4 @@ streamlit
 cryptography
 snowflake-connector-python
 snowflake-snowpark-python
+sqlalchemy
