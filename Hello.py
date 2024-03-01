@@ -7,21 +7,7 @@ from cryptography.hazmat.primitives import serialization
 
 
 def run():
-    st.write('removed secrets')
-    secret_file_path = st.secrets["connections"]["snowflake"]["private_key_file_path"]
-    with open(secret_file_path, "rb") as key:
-        p_key = serialization.load_pem_private_key(
-            key.read(),
-            password=None,
-            backend=default_backend()
-        )
-
-    pkb = p_key.private_bytes(
-        encoding=serialization.Encoding.DER,
-        format=serialization.PrivateFormat.PKCS8,
-        encryption_algorithm=serialization.NoEncryption())
-
-    conn = st.connection("snowflake", private_key=pkb)
+    conn = st.connection("snowflake")
     st.write("Connection Successful!")
     data = conn.query('select * from FREE_DATASET_GZSNZ2UNRS.PUBLIC.CORE_POI limit 10;')
     selection = data[['STREET_ADDRESS', 'CITY', 'REGION', 'POSTAL_CODE', 'PHONE_NUMBER']]
