@@ -7,5 +7,4 @@ cryptography
 snowflake-connector-python
 snowflake-snowpark-python
 sqlalchemy
-aiohttp
-requests
+tensorflow
