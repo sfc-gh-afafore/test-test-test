@@ -9,3 +9,4 @@ snowflake-snowpark-python
 sqlalchemy
 tensorflow
 opencv-python
+twisted
